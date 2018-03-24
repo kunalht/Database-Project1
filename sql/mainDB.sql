@@ -29,7 +29,7 @@ CREATE TABLE IF NOT EXISTS Parent(
     emailId VARCHAR(50)
 )Engine= InnoDB;
 
-CREATE TABLE IF NOT EXISTS Student_Parent(
+CREATE TABLE IF NOT EXISTS StudentParent(
     studentId INT,
     parentId INT,
     parentRelation enum("mother","father"),
@@ -37,10 +37,47 @@ CREATE TABLE IF NOT EXISTS Student_Parent(
     FOREIGN KEY (parentId) REFERENCES Parent(id)
 )Engine=InnoDB;
 
+CREATE TABLE IF NOT EXISTS FeeType(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40)
+)Engine=InnoDB;;
+
 CREATE TABLE IF NOT EXISTS Finance(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     amount double(10,2),
     paidOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     paidBy INT,
-    FOREIGN KEY (paidBy) REFERENCES Student(id)   
+    financeTypeId INT,
+    FOREIGN KEY (paidBy) REFERENCES Student(id),
+    FOREIGN KEY (financeTypeId) REFERENCES FeeType(id)   
+)Engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Class(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    classLevel enum("beginner","intermediate","advance"),
+    time TIME,
+    dayOfWeek INT
+)Engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Rank(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    color VARCHAR(40)
+)Engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS StudentRank(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    studentId INT,
+    rankId INT,
+    FOREIGN KEY (studentId) REFERENCES student(id),
+    FOREIGN KEY (rankId) REFERENCES Rank(id)
+)Engine=InnoDB;
+
+CREATE TABLE IF NOT EXISTS Attendance(
+    id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    date DATE,
+    classId INT,
+    studentId INT,
+    isPresent BOOLEAN,
+    FOREIGN KEY (classId) REFERENCES Class(id),
+    FOREIGN KEY (studentId) REFERENCES student(id)
 )Engine=InnoDB;
