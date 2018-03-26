@@ -1,0 +1,94 @@
+<% include ../partials/header.ejs %>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Table design</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class=" ">Student Id Number</td>
+                                <td class=" ">
+                                    <%= student[0].sid %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Name</td>
+                                <td class=" ">
+                                    <%= student[0].name %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Date If Birth</td>
+                                <td class=" ">
+                                    <%= student[0].dateOfBirth ? student[0].dateOfBirth.toDateString(): null %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Joining Date</td>
+                                <td class=" ">
+                                    <%= student[0].joiningDate ? student[0].joiningDate.toDateString(): null %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Phone Number</td>
+                                <td class=" ">
+                                    <%= student[0].phNumber %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Email</td>
+                                <td class=" ">
+                                    <%= student[0].email %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Address</td>
+                                <td class=" ">
+                                    <%= student[0].address %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">City</td>
+                                <td class=" ">
+                                    <%= student[0].city %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Area code</td>
+                                <td class=" ">
+                                    <%= student[0].areacode %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">
+                                    <%= student[0].parentRelation?parentRelation:null %>'s name</td>
+                                <td class=" ">
+                                    <%= student[0].parentName %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">
+                                    <%= student[0].parentRelation?parentRelation:null %>'s Phone Number</td>
+                                <td class=" ">
+                                    <%= student[0].phNumber %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                    <td class=" ">
+                                        <%= student[0].parentRelation?parentRelation:null %>'s Email</td>
+                                    <td class=" ">
+                                        <%= student[0].emailId %>
+                                    </td>
+                                </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <a href="/student/<%= student[0].id  %>/parent/new">Add Parent Information</a>

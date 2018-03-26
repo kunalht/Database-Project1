@@ -27,7 +27,7 @@ app.use(require("express-session")({
     saveUninitialized: false,
 }));
 app.set("view engine", "ejs")
-app.use(express.static(__dirname + "/public"))
+app.use(express.static(__dirname + "/public"));
 app.use(methodOverride("_method"));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
@@ -42,9 +42,16 @@ authPassportLogic = require('./middleware/authPassportLogic');
 
 // Routes
 let authenticationRoutes = require('./routes/authentication');
+let indexRoutes = require('./routes/indexRoutes');
 let adminRoutes = require('./routes/adminRoutes');
+let studentRoutes = require('./routes/studentRoutes');
+let transactionRoutes = require('./routes/transactionRoutes');
 app.use(authenticationRoutes);
-app.use(adminRoutes);
+app.use(indexRoutes);
+// app.use(adminRoutes);
+app.use(studentRoutes);
+app.use(transactionRoutes);
+
 
 //SQL middleware file
 // sqlExec = require('./middleware/sqlMiddleware')

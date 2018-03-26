@@ -18,38 +18,32 @@ CREATE TABLE IF NOT EXISTS Student(
     email VARCHAR(50),
     address VARCHAR(255),
     city VARCHAR(255),
-    areacode VARCHAR(10),
-    userId INT,
-    FOREIGN KEY (userId) REFERENCES User(id)
+    areacode VARCHAR(10)
 )Engine = InnoDB;
 
 CREATE TABLE IF NOT EXISTS Parent(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    phNumber VARCHAR(15),
-    emailId VARCHAR(50)
-)Engine= InnoDB;
-
-CREATE TABLE IF NOT EXISTS StudentParent(
-    studentId INT,
-    parentId INT,
+    name VARCHAR(40),
+    parentOfStudentId INT,
     parentRelation enum("mother","father"),
-    FOREIGN KEY (studentId) REFERENCES Student(id),
-    FOREIGN KEY (parentId) REFERENCES Parent(id)
-)Engine=InnoDB;
+    phNumber VARCHAR(15),
+    emailId VARCHAR(50),
+    FOREIGN KEY (parentOfStudentId) REFERENCES Student(id)
+)Engine= InnoDB;
 
 CREATE TABLE IF NOT EXISTS FeeType(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(40)
-)Engine=InnoDB;;
+)Engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Finance(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     amount double(10,2),
     paidOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     paidBy INT,
-    financeTypeId INT,
-    FOREIGN KEY (paidBy) REFERENCES Student(id),
-    FOREIGN KEY (financeTypeId) REFERENCES FeeType(id)   
+    paidBySID INT,
+    financeType VARCHAR(40),
+    FOREIGN KEY (paidBy) REFERENCES Student(id)
 )Engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Class(
@@ -81,3 +75,31 @@ CREATE TABLE IF NOT EXISTS Attendance(
     FOREIGN KEY (classId) REFERENCES Class(id),
     FOREIGN KEY (studentId) REFERENCES student(id)
 )Engine=InnoDB;
+
+INSERT INTO Rank(id,color) VALUES(1,"White");
+INSERT INTO Rank(id,color) VALUES(2,"Yellow");
+INSERT INTO Rank(id,color) VALUES(3,"Half Green");
+INSERT INTO Rank(id,color) VALUES(4,"Green");
+INSERT INTO Rank(id,color) VALUES(5,"Half Blue");
+INSERT INTO Rank(id,color) VALUES(6,"Blue");
+INSERT INTO Rank(id,color) VALUES(7,"Half Red");
+INSERT INTO Rank(id,color) VALUES(8,"Red");
+INSERT INTO Rank(id,color) VALUES(9,"Half Black");
+INSERT INTO Rank(id,color) VALUES(10,"Black");
+
+
+
+-- CREATE TABLE IF NOT EXISTS Student(
+--     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+--     sid INT NOT NULL,
+--     name VARCHAR(255),
+--     dateOfBirth DATE,
+--     joiningDate DATE,
+--     phNumber VARCHAR(15),
+--     email VARCHAR(50),
+--     address VARCHAR(255),
+--     city VARCHAR(255),
+--     areacode VARCHAR(10),
+--     userId INT,
+--     FOREIGN KEY (userId) REFERENCES User(id)
+-- )Engine = InnoDB;

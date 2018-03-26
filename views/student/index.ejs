@@ -1,0 +1,45 @@
+<% include ../partials/header.ejs %>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Table design</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="table-responsive">
+          <table class="table table-striped jambo_table bulk_action">
+            <thead>
+              <tr class="headings">
+                <th class="column-title"> Student ID </th>
+                <th class="column-title"> Name </th>
+                <th class="column-title"> Date Of Birth </th>
+                <th class="column-title"> Joining Date </th>
+                <th class="column-title"> Phone Number </th>
+                <th class="column-title"> Email </th>
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            <% students.forEach((student) => { %>
+                <%= student.id %>
+              <tr class="even pointer">
+                <td class=" "><%= student.id %></td>
+                <td class=" "> <%= student.name %></td>
+                <td class=" "><%= student.dateOfBirth ? student.dateOfBirth.toDateString(): null %></td>
+                <td class=" "> <%= student.joiningDate ? student.joiningDate.toDateString(): null %> </td>
+                <td class=" "><%= student.phNumber %></td>
+                <td class=" "> <%= student.email %> </td>
+                <td class=" last"><a href="student/<%= student.id %>">View/</a> <a href="/student/<%= student.id %>/edit">Edit/</a> <a href="/student/<%= student.id %>/delete">Remove</a></td>
+              </tr>
+              <% }) %>
+
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<% include ../partials/footer.ejs %>
