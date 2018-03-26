@@ -17,7 +17,7 @@ transactionMiddleware.getAllTransactions = (req,res) => {
     let sDate = req.query ? req.query.sdate: null;
     let eDate = req.query ? req.query.edate: null;
     let month = req.query ? req.querymonth: null;
-    let query = 'SELECT * FROM Finance ';
+    let query = 'SELECT * FROM Finance AS F JOIN Student AS S ON F.paidBy=S.id ';
     if(sid){
         query.concat(`WHERE paidBySID= {$sid}`)
     }else if(sDate){
@@ -27,12 +27,12 @@ transactionMiddleware.getAllTransactions = (req,res) => {
     }else if(month){
         // Month
     }
-    pool.query(query,(err,foundTransactions) => {
+    pool.query(query + ";",(err,foundTransactions) => {
         if(err){
             console.log(err)
         }else{
             console.log(foundTransactions);
-            res.render('transaction/index')
+            res.render('transaction/index',{transactions:foundTransactions})
         }
     })
 }
@@ -51,13 +51,23 @@ transactionMiddleware.postNewTransaction = (req, res) => {
         if(err){
             console.log(err)
         }else{
-            console.log(foundStudent.length)
             if(foundStudent.length>1){
-                res.render('transaction/new',{"notvalid":isValid})
+                res.render('transaction/new')
             }else if(foundStudent.length == 0){
                 // Not found
             }else{
-                res.redirect('back')
+                let studentEmail = foundStudent[0].email
+                let sid = foundStudent[0].sid
+                let stdID = foundStudent[0].id
+                console.log(foundStudent[0].id)
+                pool.query('INSERT INTO Finance(amount,paidBy,paidBySID,financeType) VALUES(?,?,?,?)',[amount,stdID,sid,paidBy,type],(err,newTransaction) => {
+                    if(err){
+                        console.log(err)
+                    }else{
+                        console.log(newTransaction)
+                        res.redirect('back')
+                    }
+                })
             }
         }
     })

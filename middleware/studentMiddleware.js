@@ -111,7 +111,7 @@ studentMiddleware.editStudent = (req, res) => {
     })
 }
 
-student.deleteStudent = (req, res) => {
+studentMiddleware.deleteStudent = (req, res) => {
     let studentId= req.parmas.id
     pool.query('DELETE FROM Student WHERE id=?',[studentId], (err,deletedStudent) => {
         if(err){

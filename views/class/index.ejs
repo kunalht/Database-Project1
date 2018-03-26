@@ -1,0 +1,41 @@
+<% include ../partials/header.ejs %>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>All Classes</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="table-responsive">
+          <table class="table table-striped jambo_table bulk_action">
+            <thead>
+              <tr class="headings">
+                <th class="column-title"> Name </th>
+                <th class="column-title"> Class Level </th>
+                <th class="column-title"> Time </th>
+                <th class="column-title"> Day </th>
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+                    <% for(var i=0;i< classes.length;i++){ %>
+                    <tr class="even pointer">
+                            <td class=" "> <%= classes[i].name %></td>
+                            <td class=" "> <%= classes[i].classLevel %></td>
+                            <td class=" "> <%= classes[i].time %></td>
+                            <td class=" "> <%= classes[i].day %></td>
+                            <td class=" last"><a href="/class/<%= classes[i].id %>">Add Student/</a> <a href="/transactions/<%= classes[i].id %>/edit">Edit/</a> <a href="/class/<%= classes[i].id %>/delete">Remove</a></td>
+                          </tr>
+                        
+                        <% } %>
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<% include ../partials/footer.ejs %>

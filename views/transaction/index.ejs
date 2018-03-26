@@ -1,1 +1,42 @@
-asda
+<% include ../partials/header.ejs %>
+
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>All transactions</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="table-responsive">
+          <table class="table table-striped jambo_table bulk_action">
+            <thead>
+              <tr class="headings">
+                <th class="column-title"> amount </th>
+                <th class="column-title"> Student ID</th>
+                <th class="column-title"> Student Email </th>
+                <th class="column-title"> Fee Type </th>
+                <th class="column-title"> paidOn </th>
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            <% transactions.forEach((transaction) => { %>
+              <tr class="even pointer">
+                <td class=" "><%= transaction.amount %></td>
+                <td class=" "> <%= transaction.sid %></td>
+                <td class=" "><%= transaction.financeType %></td>
+                <td class=" "> <%= transaction.paidOn ? transaction.paidOn.toDateString(): null %> </td>
+                <td class=" last"><a href="/transactions/<%= transaction.id %>/edit">Edit/</a> <a href="/transactions/<%= transaction.id %>/delete">Remove</a></td>
+              </tr>
+              <% }) %>
+
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<% include ../partials/footer.ejs %>

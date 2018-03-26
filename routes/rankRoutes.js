@@ -4,5 +4,7 @@ let express = require('express'),
     rankMiddleware = require('../middleware/rankMiddleware');
 
     router.get('/ranks',rankMiddleware.getAllRanks);
+    router.get('/ranks/new',rankMiddleware.newRank);
+    router.post('/ranks',rankMiddleware.postNewRank);
 
     module.exports = router;

@@ -46,11 +46,16 @@ let indexRoutes = require('./routes/indexRoutes');
 let adminRoutes = require('./routes/adminRoutes');
 let studentRoutes = require('./routes/studentRoutes');
 let transactionRoutes = require('./routes/transactionRoutes');
+let rankRoutes = require('./routes/rankRoutes');
+let classRoutes = require('./routes/classRoutes');
 app.use(authenticationRoutes);
 app.use(indexRoutes);
 // app.use(adminRoutes);
 app.use(studentRoutes);
 app.use(transactionRoutes);
+app.use(rankRoutes);
+app.use(classRoutes);
+
 
 
 //SQL middleware file

@@ -48,9 +48,10 @@ CREATE TABLE IF NOT EXISTS Finance(
 
 CREATE TABLE IF NOT EXISTS Class(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    name VARCHAR(40),
     classLevel enum("beginner","intermediate","advance"),
     time TIME,
-    dayOfWeek INT
+    dayOfWeek VARCHAR(40);
 )Engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Rank(
@@ -62,6 +63,8 @@ CREATE TABLE IF NOT EXISTS StudentRank(
     id INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
     studentId INT,
     rankId INT,
+    isCurrent BOOLEAN,
+    addedOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (studentId) REFERENCES student(id),
     FOREIGN KEY (rankId) REFERENCES Rank(id)
 )Engine=InnoDB;

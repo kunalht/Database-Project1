@@ -1,0 +1,42 @@
+<% include ../partials/header.ejs %>
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Table design</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <tbody>
+                            <tr class="even pointer">
+                                <td class=" ">Name</td>
+                                <td class=" ">
+                                    <%= foundClass.name %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">Class Level</td>
+                                <td class=" ">
+                                    <%= foundClass.classLevel %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                    <td class=" ">Class Time</td>
+                                    <td class=" ">
+                                        <%= foundClass.time %>
+                                    </td>
+                                </tr>
+                                <tr class="even pointer">
+                                        <td class=" ">Class Day</td>
+                                        <td class=" ">
+                                            <%= foundClass.dayOfWeek %>
+                                        </td>
+                                    </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>

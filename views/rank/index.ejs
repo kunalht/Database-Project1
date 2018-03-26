@@ -1,0 +1,34 @@
+<% include ../partials/header.ejs %>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>All Ranks</h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="table-responsive">
+          <table class="table table-striped jambo_table bulk_action">
+            <thead>
+              <tr class="headings">
+                <th class="column-title"> Rank Color </th>
+                <th class="column-title"> Action</th>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            <% ranks.forEach((rank) => { %>
+              <tr class="even pointer">                
+                  <td class=" "><%= rank.color %></td>
+                <td class=" last"><a href="/transactions/<%= rank.id %>/edit">Edit/</a> <a href="/transactions/<%= rank.id %>/delete">Remove</a></td>
+              </tr>
+              <% }) %>
+
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<% include ../partials/footer.ejs %>
