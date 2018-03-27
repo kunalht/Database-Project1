@@ -139,6 +139,15 @@ classMiddleware.getAttendance = (req, res) => {
         }
     })
 }
+
+classMiddleware.editClass = (req, res) => {
+    res.redirect('back')
+}
+
+classMiddleware.deleteClass = (req, res) => {
+    // pool.query('DELETE')
+    console.log("DELETE")
+}
 classMiddleware.removeRank = (req, res) => {
     res.redirect('back')
 }

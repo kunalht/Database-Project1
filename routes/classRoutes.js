@@ -10,6 +10,8 @@ let express = require('express'),
     router.get('/class/:id/attendance/new',classMiddleware.getNewAttendance)
     router.post('/class/:id/attendance',classMiddleware.postNewAttendance)
     router.post('/class/:id/getAttendance',classMiddleware.getAttendance)
+    router.delete('/class/:id/d',classMiddleware.deleteClass)
+    router.put('/class/:id/edit',classMiddleware.editClass)
 
     // router.get('/class/:id',classMiddleware.getclass);
     // router.get('/class/:id/edit',classMiddleware.getEditclass);

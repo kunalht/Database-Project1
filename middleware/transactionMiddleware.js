@@ -87,7 +87,14 @@ transactionMiddleware.transactionFromDates = (req, res) => {
     res.redirect(`/transactions?sDate=${sDate}&eDate=${eDate}`)
 }
 transactionMiddleware.removeTransaction = (req, res) => {
-    res.redirect('back')
+    console.log("here")
+    pool.query('DELETE FROM Finance WHERE id=?',[req.params.id],(err,deletedFinance) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.redirect('back')
+        }
+    })
 }
 
 transactionMiddleware.editTransaction = (req, res) => {

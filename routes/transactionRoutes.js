@@ -7,7 +7,7 @@ let express = require('express'),
     router.get('/transactions/new',transactionMiddleware.getNewTransaction);
     router.post('/transactions',transactionMiddleware.postNewTransaction);
     router.put('/transactions/:id/edit',transactionMiddleware.editTransaction);
-    router.delete('/transactions/:id',transactionMiddleware.removeTransaction);
+    router.delete('/transactions/:id/d',transactionMiddleware.removeTransaction);
     router.post('/transactions/date',transactionMiddleware.transactionFromDates)
 
 
