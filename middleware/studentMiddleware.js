@@ -38,7 +38,7 @@ studentMiddleware.postNewUser = (req, res) => {
                     console.log(sid);
                 }
             })
-            res.redirect('/')
+            res.redirect('back')
         }
     })
 }
@@ -150,6 +150,17 @@ studentMiddleware.changeRank = (req, res) => {
                     res.redirect('back')
                 }
             })
+        }
+    })
+}
+
+studentMiddleware.removeStudent = (req, res) => {
+    let id = req.params.id
+    pool.query('UPDATE Student SET isDeleted=True WHERE id=?',[id],(err,deletedStudent) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.redirect('back')
         }
     })
 }

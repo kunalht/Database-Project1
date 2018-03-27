@@ -3,7 +3,7 @@
 <div class="col-md-12 col-sm-12 col-xs-12">
     <div class="x_panel">
       <div class="x_title">
-        <h2>Table design</h2>
+        <h2>Students</h2>
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
@@ -23,6 +23,7 @@
             </thead>
             <tbody>
             <% students.forEach((student) => { %>
+              <% if(!student.isDeleted){ %>
                 <%= student.id %>
               <tr class="even pointer">
                 <td class=" "><%= student.sid %></td>
@@ -31,8 +32,9 @@
                 <td class=" "> <%= student.joiningDate ? student.joiningDate.toDateString(): null %> </td>
                 <td class=" "><%= student.phNumber %></td>
                 <td class=" "> <%= student.email %> </td>
-                <td class=" last"><a href="student/<%= student.id %>">View/</a> <a href="/student/<%= student.id %>/edit">Edit/</a> </td>
+                <td class=" last"><a href="student/<%= student.id %>">View/</a> <a href="/student/<%= student.id %>/edit">Edit/</a> <a href="/student/<%= student.id %>/d"> Delete </a> </td>
               </tr>
+              <% } %>
               <% }) %>
 
             </tbody>
