@@ -1,0 +1,38 @@
+<% include ../partials/header.ejs %>
+
+<div class="col-md-12 col-sm-12 col-xs-12">
+    <div class="x_panel">
+      <div class="x_title">
+        <h2>Present Students on Date <%= attendance[0].date.toDateString() %> </h2>
+        <div class="clearfix"></div>
+      </div>
+      <div class="x_content">
+        <div class="table-responsive">
+          <table class="table table-striped jambo_table bulk_action">
+            <thead>
+              <tr class="headings">
+                <th class="column-title"> Student ID </th>
+                <th class="column-title"> Name </th>
+                <th class="column-title"> Email </th>
+                <th class="column-title no-link last"><span class="nobr">Action</span>
+                </th>
+              </tr>
+            </thead>
+            <tbody>
+            <% attendance.forEach((student) => { %>
+              <tr class="even pointer">
+                <td class=" "><%= student.sid %></td>
+                <td class=" "><%= student.name %></td>
+                <td class=" "><%= student.email %></td>
+
+              </tr>
+              <% }) %>
+
+            </tbody>
+          </table>
+        </div> 
+      </div>
+    </div>
+  </div>
+
+<% include ../partials/footer.ejs %>

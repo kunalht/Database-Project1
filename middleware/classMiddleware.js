@@ -108,19 +108,17 @@ classMiddleware.postNewAttendance = (req, res ) => {
 //     let 
 // }
 
-classMiddleware.getDateAttendance = (req, res) => {
-    console.log(req.params)
+classMiddleware.getAttendance = (req, res) => {
     let classId = req.params.id
-    let date = req.body.datet
-    console.log(Date.parse(date))
-    pool.query('SELECT * FROM Attendance WHERE date =?',[classId,Date.parse(date)],(err,attendance) => {
+    let date = req.body.date
+    pool.query('SELECT * FROM Attendance LEFT JOIN Student ON Attendance.studentId = Student.id LEFT JOIN Class on Attendance.classId = Class.id WHERE date =? AND classId=?',[date,classId],(err,attendance) => {
         if(err){
             console.log(err)
         }else{
             console.log(attendance)
+            res.render('class/presentstudents',{attendance:attendance})
         }
     })
-    res.render('class/presentstudents')
 }
 classMiddleware.removeRank = (req, res) => {
     res.redirect('back')

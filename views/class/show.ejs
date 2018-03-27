@@ -40,12 +40,8 @@
             </div>
         </div>
         Browse Attendance for:
-        <#% classDates.forEach((classs) => { %>
-            <form action="/class/<%= classs.date %>/allAttendance" method="POST">
-            <br>
-                <a href="/class/<%= foundClass.id %>/allAttendance?date=<%= classs.date %>"><%= classs.date.toDateString() %>
-                <input type="hidden" value="<%= classs.date.toDateString() %>" name="datet">
-                <button type="submit"></button>
-            </form>
-                <#% }) %>
+<form action="/class/<%= foundClass.id %>/getAttendance" method="POST">
+    <input name="date" type="date">
+    <button type="submit">Search</button>
+</form>
     </div>
