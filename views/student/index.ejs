@@ -25,7 +25,7 @@
             <% students.forEach((student) => { %>
                 <%= student.id %>
               <tr class="even pointer">
-                <td class=" "><%= student.id %></td>
+                <td class=" "><%= student.sid %></td>
                 <td class=" "> <%= student.name %></td>
                 <td class=" "><%= student.dateOfBirth ? student.dateOfBirth.toDateString(): null %></td>
                 <td class=" "> <%= student.joiningDate ? student.joiningDate.toDateString(): null %> </td>

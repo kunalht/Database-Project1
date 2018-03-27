@@ -13,12 +13,12 @@ router.get('/register', authenticationMiddleware.getRegister)
 // })
 router.post('/login',
     passport.authenticate('local-login', {
-        successRedirect: '/login',
+        successRedirect: '/',
         failureRedirect: '/loginn'
     }));
 router.post('/register',
     passport.authenticate('local', {
-        successRedirect: '/register',
+        successRedirect: '/',
         failureRedirect: '/registerr'
     }));
 

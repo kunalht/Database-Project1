@@ -91,6 +91,7 @@ studentMiddleware.getStudent = (req, res) => {
 }
 
 studentMiddleware.getEditStudent = (req, res) => {
+    console.log("EDIT")
     let studentId = req.params.id;
     pool.query('SELECT * FROM Student WHERE id=?',[studentId],(err,student)=> {
         if(err){
@@ -104,14 +105,17 @@ studentMiddleware.getEditStudent = (req, res) => {
 studentMiddleware.editStudent = (req, res) => {
     let studentId = req.params.id
     let sid = req.body.sid
-    let name = req.body.name
-    let email = req.body.email
-    let phNumber = req.body.phNumber
-    let address = req.body.address
-    let city = req.body.city
-    let areacode  = req.body.areacode
-    pool.query('UPDATE Student SET sid=?,name=?,email=?,phNumber=?,address=?,city=?,areacode=? WHERE id=?',
-    [sid,name,email,phNumber,address,city,areacode,studentId],(err,updatedStudent) => {
+    let name = req.body.name ? req.body.name : null
+    let email = req.body.email ? req.body.email: null
+    let phNumber = req.body.phNumber ? req.body.phNumber: null
+    let address = req.body.address ? req.body.address: null
+    let city = req.body.city ? req.body.city: null
+    let areacode  = req.body.areacode ? req.body.areacode: null
+    let query =`UPDATE Student SET sid=${sid},name=${name},phNumber=${phNumber} WHERE id=${studentId}`
+    console.log(query)
+    // pool.query('UPDATE Student SET sid=?,name=?,email=?,phNumber=?,address=?,city=?,areacode=? WHERE id=?',
+    pool.query(query,
+   (err,updatedStudent) => {
         if(err){
             console.log(err)
         }else{

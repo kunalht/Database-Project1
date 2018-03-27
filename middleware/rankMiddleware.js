@@ -44,4 +44,7 @@ rankMiddleware.editRank = (req, res) => {
     res.redirect('back')
 }
 
+rankMiddleware.addStudent = (req, res) => {
+    pool.query('SELECT * FROM Student WHERE id')
+}
 module.exports = rankMiddleware;

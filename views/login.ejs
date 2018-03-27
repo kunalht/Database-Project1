@@ -1,5 +1,111 @@
-<form action="/login" method="POST">
+<!-- <form action="/login" method="POST">
     <input name="email" type="text" class="form-control" placeholder="Email">
     <input name="password" type="password" class="form-control" placeholder="Password">
     <button type="submit"> Submit</button>
-</form>
+</form> -->
+
+
+<!-- <#% include ./partials/header.ejs %> -->
+
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+<title>LOCAL HOST </title>
+<link href="/css/myStyle.css" rel="stylesheet" type="text/css">
+<!-- Bootstrap core CSS -->
+<link href="/css/bootstrap.min.css" rel="stylesheet" type="text/css">
+<link href="/fonts/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+<link href="/css/animate.min.css" rel="stylesheet" type="text/css">
+<!-- Custom Theme Style -->
+<link href="/scss/custom.scss" rel="stylesheet">
+<!-- jQuery -->
+<script src="/js/jquery.min.js"></script>
+<!-- Bootstrap -->
+<script src="/js/bootstrap.min.js"></script>
+<!-- Custom Theme Scripts -->
+<script src="/js/custom.js"></script>
+<!-- iCheck -->
+<link href="/vendors/iCheck/skins/flat/green.css" rel="stylesheet">
+<!-- bootstrap-wysiwyg -->
+<link href="/vendors/google-code-prettify/bin/prettify.min.css" rel="stylesheet">
+<!-- Select2 -->
+<link href="/vendors/select2/dist/css/select2.min.css" rel="stylesheet">
+<!-- Switchery -->
+<link href="/vendors/switchery/dist/switchery.min.css" rel="stylesheet">
+<!-- starrr -->
+<link href="/vendors/starrr/dist/starrr.css" rel="stylesheet">
+<!-- bootstrap-daterangepicker -->
+<link href="/vendors/bootstrap-daterangepicker/daterangepicker.css" rel="stylesheet">
+<!-- FastClick -->
+<script src="/vendors/fastclick/lib/fastclick.js"></script>
+<!-- NProgress -->
+<script src="/vendors/nprogress/nprogress.js"></script>
+<!-- bootstrap-progressbar -->
+<script src="/vendors/bootstrap-progressbar/bootstrap-progressbar.min.js"></script>
+<!-- iCheck -->
+<script src="/vendors/iCheck/icheck.min.js"></script>
+<!-- bootstrap-daterangepicker -->
+<script src="/vendors/moment/min/moment.min.js"></script>
+<script src="/vendors/bootstrap-daterangepicker/daterangepicker.js"></script>
+<!-- bootstrap-wysiwyg -->
+<script src="/vendors/bootstrap-wysiwyg/js/bootstrap-wysiwyg.min.js"></script>
+<script src="/vendors/jquery.hotkeys/jquery.hotkeys.js"></script>
+<script src="/vendors/google-code-prettify/src/prettify.js"></script>
+<!-- jQuery Tags Input -->
+<script src="/vendors/jquery.tagsinput/src/jquery.tagsinput.js"></script>
+<!-- Switchery -->
+<script src="/vendors/switchery/dist/switchery.min.js"></script>
+<!-- Select2 -->
+<script src="/vendors/select2/dist/js/select2.full.min.js"></script>
+<!-- Parsley -->
+<script src="/vendors/parsleyjs/dist/parsley.min.js"></script>
+<!-- Autosize -->
+<script src="/vendors/autosize/dist/autosize.min.js"></script>
+<!-- jQuery autocomplete -->
+<script src="/vendors/devbridge-autocomplete/dist/jquery.autocomplete.min.js"></script>
+<!-- starrr -->
+<script src="/vendors/starrr/dist/starrr.js"></script>
+
+
+<div class="container-fluid text-center">
+    <div class="row">
+        <div class="col-md-6 col-sm-12 col-xs-12">
+            <div class="x_panel">
+                <div class="x_title">
+                    <h2> Login </h2>
+                    <div class="clearfix"></div>
+                </div>
+                <div class="x_content">
+                    <br />
+                    <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/login" method="POST">
+
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="first-name">E-mail
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="text" name="email" id="first-name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label class="control-label col-md-3 col-sm-3 col-xs-12" for="last-name">Password
+                                <span class="required">*</span>
+                            </label>
+                            <div class="col-md-6 col-sm-6 col-xs-12">
+                                <input type="password" name="password" id="last-name" name="last-name" required="required" class="form-control col-md-7 col-xs-12">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+                                <button type="submit" class="btn btn-success">Submit</button>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

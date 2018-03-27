@@ -53,7 +53,7 @@ CREATE TABLE IF NOT EXISTS Class(
     name VARCHAR(40),
     classLevel enum("beginner","intermediate","advance"),
     time TIME,
-    dayOfWeek VARCHAR(40);
+    dayOfWeek VARCHAR(40)
 )Engine=InnoDB;
 
 CREATE TABLE IF NOT EXISTS Rank(

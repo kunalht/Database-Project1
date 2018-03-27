@@ -48,11 +48,13 @@ classMiddleware.addNewStudent = (req, res) => {
         if(err){
             console.log(err)
         }else{
-            pool.query('SELECT * FROM Attendance WHERE classId =? GROUP BY date',[classId],(err,classDates) => {
+            pool.query('SELECT * FROM Attendance WHERE classId =?',[classId],(err,classDates) => {
+
+            // pool.query('SELECT * FROM Attendance WHERE classId =? GROUP BY date',[classId],(err,classDates) => {
                 if(err){
                     console.log(err)
                 }else{
-                    console.log(classDates[0].date.toDateString())
+                    // console.log(classDates[0].date.toDateString())
                     res.render('class/show.ejs',{foundClass:foundClass[0],classDates:classDates})
                 }
             })
@@ -89,9 +91,24 @@ classMiddleware.getNewAttendance = (req, res) => {
     })
 }
 classMiddleware.postNewAttendance = (req, res ) => {
+    console.log(req.body)
     let presentStudents = req.body.students;
     let classId = req.params.id
     let date = req.body.day
+    console.log(typeof(presentStudents))
+    if(!presentStudents[1]){
+        // let presentstudents = []
+        // presentstudents.push(parseInt(req.body.students));
+        // console.log(presentstudents)
+        pool.query('INSERT INTO Attendance(classId,studentId,isPresent,date) VALUES(?,?,True,?)',
+    [classId,presentStudents,date],(err,attendance) => {
+        if(err){
+            console.log(err)
+        }else{
+            res.redirect('back')
+        }
+    })
+    }else{
         presentStudents.forEach((student)=> {
             pool.query('INSERT INTO Attendance(classId,studentId,isPresent,date) VALUES(?,?,True,?)',
             [classId,student,date], (err,attendance) => {
@@ -102,6 +119,8 @@ classMiddleware.postNewAttendance = (req, res ) => {
             })
         })
         res.redirect('back')
+    }
+
 }
 
 // classMiddleware.showAllAttendance = (req, res) => {
