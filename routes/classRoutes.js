@@ -7,6 +7,10 @@ let express = require('express'),
     router.post('/classes',classMiddleware.postNewClass);
     router.get('/class/:id',classMiddleware.addNewStudent);
     router.post('/class/:id/student',classMiddleware.postNewStudent)
+    router.get('/class/:id/attendance',classMiddleware.getNewAttendance)
+    router.post('/class/:id/attendance',classMiddleware.postNewAttendance)
+    router.post('/class/:id/allAttendance',classMiddleware.getDateAttendance)
+
     // router.get('/class/:id',classMiddleware.getclass);
     // router.get('/class/:id/edit',classMiddleware.getEditclass);
     // router.put('/class/:id',classMiddleware.editclass)

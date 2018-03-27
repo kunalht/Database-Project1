@@ -31,7 +31,7 @@ studentMiddleware.postNewUser = (req, res) => {
             console.log(err)
         }else{
             let studentId = newStudent.insertId;
-            pool.query('INSERT INTO StudentRank(studentId,rankId) VALUES(?,1)',[studentId],(err,sid) => {
+            pool.query('INSERT INTO StudentRank(studentId,rankId,isCurrent) VALUES(?,1,True)',[studentId],(err,sid) => {
                 if(err){
                     console.log(err)
                 }else{
@@ -72,11 +72,20 @@ studentMiddleware.postNewParent = (req, res) => {
 
 studentMiddleware.getStudent = (req, res) => {
     let id = req.params.id;
-    pool.query('SELECT *,P.name AS parentName FROM Student AS S JOIN Parent AS P ON S.id = P.parentOfStudentId WHERE S.id=?',[id],(err,student) => {
+    pool.query('SELECT *,P.name AS parentName,S.id AS studentId FROM Student AS S LEFT JOIN Parent AS P ON S.id = P.parentOfStudentId'+
+    ' WHERE S.id=?',[id],(err,student) => {
         if(err){
             console.log(err)
         }else{
-            res.render('student/show',{student:student})
+            pool.query('SELECT * FROM StudentRank JOIN Rank ON StudentRank.rankId = Rank.id WHERE studentId = ?',[id],(err,ranks) => {
+                pool.query('SELECT * FROM Rank',(err,allRanks) => {
+                    if(err){
+                        console.log(err)
+                    }else{
+                        res.render('student/show',{student:student,ranks:ranks,allRanks:allRanks})
+                    }
+                })
+            })
         }
     })
 }
@@ -118,6 +127,25 @@ studentMiddleware.deleteStudent = (req, res) => {
             console.log(err)
         }else{
             res.redirect('back')
+        }
+    })
+}
+
+studentMiddleware.changeRank = (req, res) => {
+    let id = req.params.id
+    let rankId = req.body.rank
+    console.log(id)
+    pool.query('UPDATE StudentRank SET isCurrent = FALSE WHERE studentId = ?',[id],(err, updatedStudent) => {
+        if(err){
+            console.log(err)
+        }else{
+            pool.query('INSERT INTO StudentRank(studentId,rankId,isCurrent) VALUES(?,?,True)',[id,rankId],(err,newRank) => {
+                if(err){
+                    console.log(err)
+                }else{
+                    res.redirect('back')
+                }
+            })
         }
     })
 }

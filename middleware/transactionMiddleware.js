@@ -13,8 +13,8 @@ let pool = mysql.createPool({
 
 transactionMiddleware.getAllTransactions = (req,res) => {
     let sid = req.query ? req.query.sid: null;
-    let sDate = req.query ? req.query.sDate.toString(): null;
-    let eDate = req.query ? req.query.eDate.toString(): null;
+    let sDate = req.query.sDate ? req.query.sDate.toString(): null;
+    let eDate = req.query.eDate ? req.query.eDate.toString(): null;
     let month = req.query ? req.querymonth: null;
     let query = 'SELECT * FROM Finance AS F JOIN Student AS S ON F.paidBy=S.id ';
     if(sid){
@@ -35,7 +35,6 @@ transactionMiddleware.getAllTransactions = (req,res) => {
     // else if(month){
     //     // Month
     // }
-    console.log(query)
     pool.query(query + ";",(err,foundTransactions) => {
         if(err){
             console.log(err)

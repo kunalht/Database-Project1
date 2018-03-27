@@ -11,6 +11,7 @@ let express = require('express'),
     router.get('/student/:id/edit',studentMiddleware.getEditStudent);
     router.put('/student/:id',studentMiddleware.editStudent)
     router.delete('/student/:id/delete',studentMiddleware.deleteStudent);
+    router.post('/student/:id/changeRank',studentMiddleware.changeRank)
     // router.get('/admin/trasaction/new')
 
     module.exports = router;

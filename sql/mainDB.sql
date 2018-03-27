@@ -18,7 +18,8 @@ CREATE TABLE IF NOT EXISTS Student(
     email VARCHAR(50),
     address VARCHAR(255),
     city VARCHAR(255),
-    areacode VARCHAR(10)
+    areacode VARCHAR(10),
+    createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 )Engine = InnoDB;
 
 CREATE TABLE IF NOT EXISTS Parent(
@@ -28,6 +29,7 @@ CREATE TABLE IF NOT EXISTS Parent(
     parentRelation enum("mother","father"),
     phNumber VARCHAR(15),
     emailId VARCHAR(50),
+    createdOn TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
     FOREIGN KEY (parentOfStudentId) REFERENCES Student(id)
 )Engine= InnoDB;
 

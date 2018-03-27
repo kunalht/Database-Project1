@@ -3,7 +3,7 @@
     <div class="col-md-12 col-sm-12 col-xs-12">
         <div class="x_panel">
             <div class="x_title">
-                <h2>Table design</h2>
+                <h2>Student Details</h2>
                 <div class="clearfix"></div>
             </div>
             <div class="x_content">
@@ -79,16 +79,91 @@
                                 </td>
                             </tr>
                             <tr class="even pointer">
-                                    <td class=" ">
-                                        <%= student[0].parentRelation?parentRelation:null %>'s Email</td>
-                                    <td class=" ">
-                                        <%= student[0].emailId %>
-                                    </td>
-                                </tr>
+                                <td class=" ">
+                                    <%= student[0].parentRelation?parentRelation:null %>'s Email</td>
+                                <td class=" ">
+                                    <%= student[0].emailId %>
+                                </td>
+                            </tr>
+                            <tr class="even pointer">
+                                <td class=" ">
+                                    Current Rank</td>
+                                <td class=" ">
+                                    <% ranks.forEach((rank) => { %>
+                                        <% if(rank.isCurrent == true){ %>
+                                            <%= rank.color %>
+                                                <% } %>
+                                                    <% }) %>
+                                </td>
+                            </tr>
+                            <tr>
+                                <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/student/<%= student[0].studentId %>/changeRank"
+                                    method="POST">
+                                    <div class="form-group">
+                                        <td> Change Student's Rank
+                                        </td>
+                                        <td>
+                                            <div class="row">
+                                                <div class="col-md-9">
+                                                    <select class="form-control" name="rank">
+                                                        <option>Choose New Rank</option>
+                                                        <% allRanks.forEach((rank) => { %>
+                                                            <option value="<%= rank.id %>">
+                                                                <%= rank.color %>
+                                                            </option>
+                                                            <% }) %>
+                                                    </select>
+                                                </div>
+                                                <div class="col-md-3">
+                                                    <button type="submit" class="btn btn-success">Submit</button>
+                                                </div>
+                                            </div>
+                                        </td>
+                                    </div>
+                                </form>
+                            </tr>
                         </tbody>
                     </table>
                 </div>
             </div>
         </div>
     </div>
-    <a href="/student/<%= student[0].id  %>/parent/new">Add Parent Information</a>
+
+
+    <div class="col-md-12 col-sm-12 col-xs-12">
+        <div class="x_panel">
+            <div class="x_title">
+                <h2>Student Rank History</h2>
+                <div class="clearfix"></div>
+            </div>
+            <div class="x_content">
+                <div class="table-responsive">
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+                                <th class="column-title"> Rank </th>
+                                <th class="column-title"> Earned On </th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% ranks.forEach((rank)=>{ %>
+                                <%= student.id %>
+                                    <tr class="even pointer">
+                                        <td class=" ">
+                                            <%= rank.color %>
+                                        </td>
+                                        <td class=" ">
+                                            <%= rank.addedOn.toDateString() %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <a href="/student/<%= student[0].studentId %>/parent/new">Add Parent Information</a>
