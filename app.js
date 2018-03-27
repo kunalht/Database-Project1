@@ -48,13 +48,13 @@ let studentRoutes = require('./routes/studentRoutes');
 let transactionRoutes = require('./routes/transactionRoutes');
 let rankRoutes = require('./routes/rankRoutes');
 let classRoutes = require('./routes/classRoutes');
-app.use(authenticationRoutes);
-app.use(indexRoutes);
-// app.use(adminRoutes);
-app.use(studentRoutes);
-app.use(transactionRoutes);
-app.use(rankRoutes);
-app.use(classRoutes);
+app.use("/db",authenticationRoutes);
+app.use("/db",indexRoutes);
+// app.use("/db",adminRoutes);
+app.use("/db",studentRoutes);
+app.use("/db",transactionRoutes);
+app.use("/db",rankRoutes);
+app.use("/db",classRoutes);
 
 
 
@@ -63,6 +63,6 @@ app.use(classRoutes);
 authenticationMiddleware = require('./middleware/authentication');
 
 
-app.listen("3000", () => {
+app.listen("9812", () => {
     console.log("Server started");
 })
