@@ -55,7 +55,7 @@
                 <td class=" "> <%= transaction.email %></td>
                 <td class=" "><%= transaction.financeType %></td>
                 <td class=" "> <%= transaction.paidOn ? transaction.paidOn.toDateString(): null %> </td>
-                <td class=" last"><a href="/transactions/<%= transaction.id %>/edit">Edit/</a> 
+                <td class=" last"> 
                  <form action="/transactions/<%= transaction.id %>/d?_method=DELETE" method="POST">
                   <button type="submit" class="btn btn-danger">Remove</button>
                   </form>
