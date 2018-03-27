@@ -5,6 +5,32 @@
     <div class="x_panel">
       <div class="x_title">
         <h2>All transactions</h2>
+        <br><br>
+
+        <h2> Search transactions between date </h2>
+        <br><br>
+        <form id="demo-form2" data-parsley-validate class="form-horizontal form-label-left" action="/transactions/date" method="POST">
+          <div class="form-group">
+            <label class="control-label col-md-3 col-sm-3 col-xs-12">Start Date
+            </label>
+            <div class="col-md-6 col-sm-6 col-xs-12">
+                <input id="birthday" name="sDate" class="date-picker form-control col-md-7 col-xs-12"  type="date">
+            </div>
+        </div>
+        <div class="form-group">
+          <label class="control-label col-md-3 col-sm-3 col-xs-12">End Date
+          </label>
+          <div class="col-md-6 col-sm-6 col-xs-12">
+              <input id="birthday" name="eDate" class="date-picker form-control col-md-7 col-xs-12" type="date">
+          </div>
+      </div>
+      <div class="form-group">
+        <div class="col-md-6 col-sm-6 col-xs-12 col-md-offset-3">
+            <button type="submit" class="btn btn-success">Submit</button>
+        </div>
+    </div>
+        </form>
+
         <div class="clearfix"></div>
       </div>
       <div class="x_content">
@@ -26,6 +52,7 @@
               <tr class="even pointer">
                 <td class=" "><%= transaction.amount %></td>
                 <td class=" "> <%= transaction.sid %></td>
+                <td class=" "> <%= transaction.email %></td>
                 <td class=" "><%= transaction.financeType %></td>
                 <td class=" "> <%= transaction.paidOn ? transaction.paidOn.toDateString(): null %> </td>
                 <td class=" last"><a href="/transactions/<%= transaction.id %>/edit">Edit/</a> <a href="/transactions/<%= transaction.id %>/delete">Remove</a></td>

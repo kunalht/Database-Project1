@@ -12,26 +12,34 @@ let pool = mysql.createPool({
 });
 
 transactionMiddleware.getAllTransactions = (req,res) => {
-    console.log(req.query)
     let sid = req.query ? req.query.sid: null;
-    let sDate = req.query ? req.query.sdate: null;
-    let eDate = req.query ? req.query.edate: null;
+    let sDate = req.query ? req.query.sDate.toString(): null;
+    let eDate = req.query ? req.query.eDate.toString(): null;
     let month = req.query ? req.querymonth: null;
     let query = 'SELECT * FROM Finance AS F JOIN Student AS S ON F.paidBy=S.id ';
     if(sid){
-        query.concat(`WHERE paidBySID= {$sid}`)
-    }else if(sDate){
-        // Add query for start date
-    }else if(eDate){
-        // End date
-    }else if(month){
-        // Month
+        query += `WHERE paidBySID= {$sid}`
     }
+    if(sDate){
+        query += `WHERE paidOn >=${sDate} `
+    }
+    if(eDate){
+        if(sDate){
+            query += `and `
+        }else{
+            query += `WHERE `
+        }
+        query += `paidOn <= ${eDate}`
+        // End date
+    }
+    // else if(month){
+    //     // Month
+    // }
+    console.log(query)
     pool.query(query + ";",(err,foundTransactions) => {
         if(err){
             console.log(err)
         }else{
-            console.log(foundTransactions);
             res.render('transaction/index',{transactions:foundTransactions})
         }
     })
@@ -59,12 +67,11 @@ transactionMiddleware.postNewTransaction = (req, res) => {
                 let studentEmail = foundStudent[0].email
                 let sid = foundStudent[0].sid
                 let stdID = foundStudent[0].id
-                console.log(foundStudent[0].id)
-                pool.query('INSERT INTO Finance(amount,paidBy,paidBySID,financeType) VALUES(?,?,?,?)',[amount,stdID,sid,paidBy,type],(err,newTransaction) => {
+                console.log(type)
+                pool.query('INSERT INTO Finance(amount,paidBy,paidBySID,financeType) VALUES(?,?,?,?)',[amount,stdID,sid,type],(err,newTransaction) => {
                     if(err){
                         console.log(err)
                     }else{
-                        console.log(newTransaction)
                         res.redirect('back')
                     }
                 })
@@ -73,6 +80,13 @@ transactionMiddleware.postNewTransaction = (req, res) => {
     })
 }
 
+transactionMiddleware.transactionFromDates = (req, res) => {
+    let sDate = req.body.sDate
+    let eDate = req.body.eDate
+    console.log(sDate) 
+    console.log(eDate)
+    res.redirect(`/transactions?sDate=${sDate}&eDate=${eDate}`)
+}
 transactionMiddleware.removeTransaction = (req, res) => {
     res.redirect('back')
 }
